@@ -36,38 +36,42 @@
     <ul>
       <li><strong>No Cloud Storage:</strong> Files you send or receive are never uploaded to our servers or third-party file servers.</li>
       <li><strong>Local Network Discovery:</strong> To discover nearby devices running LanSwift on the same Wi-Fi network, the App broadcasts and responds to UDP beacons containing your configured device name, platform type, a randomly generated local device ID, and transfer port number.</li>
-      <li><strong>Web Portal Mode:</strong> When you enable the HTTP Web App Server, files in your Send Queue are served locally over your LAN IP address for devices you share the URL/QR code with.</li>
+      <li><strong>Web Portal Mode:</strong> When you enable the HTTP Web App Server, files in your Send Queue are served locally over your LAN IP address protected by a randomly generated 4-digit PIN session code for authorized devices you share the URL/QR code with.</li>
     </ul>
 
     <h2>2. Data Stored Locally on Your Device</h2>
     <p>The App stores preferences locally on your device using standard platform storage (such as Android SharedPreferences):</p>
     <ul>
       <li>Custom device name and locally generated random device ID</li>
-      <li>Transfer preferences (download folder path, auto-accept setting, folder organization, keep-awake preference)</li>
+      <li>Transfer preferences (download folder path, auto-accept setting, folder organization, keep-awake preference, and background radar toggle)</li>
       <li>Local Send Queue / Web Portal file path list and in-memory diagnostic logs (which you can clear at any time in Settings)</li>
     </ul>
 
-    <h2>3. Advertising (Google AdMob)</h2>
+    <h2>3. Advertising &amp; User Consent (Google AdMob &amp; UMP)</h2>
     <p>
-      On Android (and iOS where applicable), LanSwift displays advertisements provided by <strong>Google AdMob</strong>. While LanSwift itself does not operate user accounts or analytics servers, the Google Mobile Ads SDK may automatically collect and share certain data to serve ads, limit ad frequency, and prevent fraud, including:
+      On mobile platforms, LanSwift displays advertisements provided by <strong>Google AdMob</strong>. While LanSwift itself does not operate user accounts or analytics servers, the Google Mobile Ads SDK and Google User Messaging Platform (UMP) may automatically collect and process certain data to serve ads, limit ad frequency, prevent fraud, and manage regulatory consent (such as GDPR in the EEA/UK and applicable privacy laws), including:
     </p>
     <ul>
       <li>Advertising ID (AAID / IDFA) and app set IDs</li>
-      <li>IP address (used to estimate general/approximate location)</li>
+      <li>IP address (used to estimate general/approximate location and network connection)</li>
       <li>Device information, ad impressions, interactions, and crash/performance diagnostics</li>
+      <li>User consent choices and preferences recorded via the Google UMP consent framework</li>
     </ul>
     <p>
+      <strong>Managing Your Ad Preferences:</strong> If you are located in the European Economic Area (EEA), United Kingdom, or Switzerland, you can review, update, or revoke your advertising consent choices at any time directly within the App by navigating to <em>Settings &rarr; Legal, Privacy &amp; About &rarr; Ad Privacy Choices</em>. You can also manage personalized ad preferences in your device settings (<em>Settings &rarr; Google &rarr; Ads</em>).
+    </p>
+    <p>
       You can learn how Google uses data from apps that use its services at
-      <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">Google Partner Sites Policy</a>,
-      and manage personalized ad preferences in your Android device settings (<em>Settings &rarr; Google &rarr; Ads</em>).
+      <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">Google Partner Sites Policy</a>.
     </p>
 
     <h2>4. App Permissions</h2>
     <ul>
-      <li><strong>Wi-Fi / Network Access:</strong> Required to discover peers and transfer files over your local network, as well as to load AdMob ads when internet is available.</li>
-      <li><strong>Storage / File Picker Access:</strong> Used strictly to read files/folders you explicitly choose to send and to save received files into your chosen download folder.</li>
-      <li><strong>Notifications &amp; Foreground Service:</strong> Used to display live transfer progress and keep active transfers running reliably when the app is minimized.</li>
-      <li><strong>Battery Optimization Exemption (Optional):</strong> You may optionally grant unrestricted background battery usage so your phone can continue receiving transfers while idle.</li>
+      <li><strong>Wi-Fi / Local Network Access:</strong> Required to discover peers and transfer files over your local Wi-Fi or LAN, as well as to fetch AdMob ads when internet is available.</li>
+      <li><strong>File &amp; Storage Access:</strong> Used strictly to read files/folders you explicitly choose to send. On modern Android versions, received files are saved into your public Downloads folder via Android's scoped MediaStore API without requiring broad device storage permissions.</li>
+      <li><strong>Notifications:</strong> Used on Android 13+ to display transfer alerts and completion notifications.</li>
+      <li><strong>Foreground Service (Data Sync):</strong> Used to keep active transfers running reliably and optionally maintain local device discovery when the app is minimized. The ongoing notification includes a direct "Stop Radar" action button, and background discovery can be enabled or disabled at any time under <em>Settings &rarr; Transfer Behavior</em>.</li>
+      <li><strong>Battery Optimization Exemption (Optional):</strong> You may optionally grant unrestricted background battery usage so your phone does not throttle incoming transfers while idle.</li>
     </ul>
 
     <h2>5. Children's Privacy</h2>
